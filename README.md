@@ -62,15 +62,29 @@ ls /usr/share/ghidra/support/analyzeHeadless
 
 ## Usage
 
-### Quick (bash)
+Both scripts call the same Ghidra engine and produce identical output. The difference is in control and safety.
+
+---
+
+### `simple_decompile.sh` — Quick, zero-config
+
+No options, no setup. Give it a binary and it runs.
 
 ```bash
 ./simple_decompile.sh /path/to/binary
 ```
 
-Output is saved to `output_<binary>_<timestamp>/` in the current directory. A 50-line preview is printed on completion.
+- Output is auto-saved to `output_<binary>_<timestamp>/` in the current directory
+- Prints a 50-line preview of the decompiled code when done
+- No timeout — will run until Ghidra finishes (or hang indefinitely on problematic binaries)
 
-### Full (Python)
+**Best for:** quick one-off analysis, CTF challenges, or when you just want to see the output fast without thinking about flags.
+
+---
+
+### `decompile.py` — Full-featured, scriptable
+
+Same decompilation, but with control over where output goes, a hard timeout, and proper error reporting.
 
 ```bash
 # Basic
@@ -85,9 +99,17 @@ Output is saved to `output_<binary>_<timestamp>/` in the current directory. A 50
 
 | Flag | Description |
 |---|---|
-| `-o`, `--output` | Output directory (default: temp dir) |
+| `-o`, `--output` | Output directory (default: system temp dir) |
 | `-p`, `--project` | Ghidra project name (default: `temp_project`) |
 | `-g`, `--ghidra-path` | Path to Ghidra installation (default: `/usr/share/ghidra`) |
+
+- Stops automatically after **5 minutes** if Ghidra gets stuck
+- Surfaces specific error and warning lines from Ghidra's output when something fails
+- Returns exit code `0` on success and `1` on failure — useful in scripts and pipelines
+
+**Best for:** malware analysis workflows, batch processing multiple binaries, or any situation where you need the output in a specific place and reliable error handling.
+
+---
 
 ### Batch processing
 
