@@ -1,6 +1,8 @@
 # ghidra-decompiler
 
-A command-line toolkit for automated binary decompilation using [Ghidra's](https://ghidra-sre.org/) headless analyzer. Designed for security engineers, reverse engineers, and CTF players who want fast, scriptable decompilation without opening the GUI.
+A command-line toolkit for automated binary decompilation using [Ghidra's](https://ghidra-sre.org/) headless analyzer. Designed for me because im lazy and want to keep things GUI-free. Running the GUI was so slow, so i decided to create something that used the Ghidra-API to decompile code for my CTFs. 
+
+PS: also tested Claude Code during the development to automate the commit messages, beause I don't wanna use Copilot outside of Latex usage.
 
 ---
 
