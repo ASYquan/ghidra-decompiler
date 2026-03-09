@@ -224,6 +224,10 @@ When analyzing untrusted or malicious binaries:
 
 ---
 
+## TODO
+I want to implement a LLM based variable name setter. So i can better read and get an understanding of what is happening. Doesn't have to be LLM, just something 
+which can do the "basic" stuff immediately, such that I can focus on the more difficult things. 
+
 ## License
 
 For educational and security research purposes only.
